@@ -95,3 +95,7 @@ button{
     font-weight: bold;
     padding-bottom: 10px;
 }
+
+.changeFromRead{
+    background-color: rgb(0, 71, 225);
+}
