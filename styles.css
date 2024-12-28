@@ -1,0 +1,97 @@
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  
+  body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+  }
+  
+  ol, ul {
+    list-style: none;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+/* AFTER CSS RESET */
+
+
+
+body{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    display: grid;
+    grid-template-rows: 1fr 8fr;
+}
+
+#library{
+    background-color: rgb(211, 211, 211);
+    padding: 20px 20px;
+    color:rgb(35, 35, 35);
+    font-weight: bold;
+}
+
+#books{
+    margin-top: 20px;
+
+    padding:20px 20px;
+    background-color: #ffffff7c;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap:10px;
+    width:65vw;
+    margin-left: auto;
+    margin-right: auto;
+
+}   
+
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color:rgb(0, 0, 0);
+    background-color: rgb(221, 221, 221);
+    border-color: blue;
+    border-radius: 20px;
+    max-height: 220px;
+    padding:10px 20px;
+}
+.cardTitle{
+    font-size: 18px;
+}
+
+button{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+button{
+    border-style: none;
+    background-color: rgb(169, 5, 19);
+    font-weight: bold;
+    color:white;
+    font-size: 13px;
+    border-radius: 20px;
+    padding:9px 20px;
+}
+
+.cardTitle{
+    font-weight: bold;
+    padding-bottom: 10px;
+}

@@ -4,9 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="script.js" ></script>
+    <script src="script.js" defer ></script>
+    <link rel="stylesheet" href="styles.css" >
 </head>
 <body>
+    <h2 id="library">The library of time</h2>
     
+    <div id="books">
+
+    </div>
+
+    <dialog id="favDialog">
+        <form>
+            <label for="title"> Title <input type="text" name="title" id="title" required>  </label>
+            <label for="author"> Author <input type="text" name="author" id="author" required>  </label>
+            <label for="numPages"> Number of Pages <input type="number" name="numPages" id="numPages" required>  </label>
+            <label for ="read" >Read? 
+              <select name="read" id="read">
+                <option value="no" >No</option>
+                <option value="yes" default>Yes</option>
+              </select>
+            </label>
+          <div>
+            <button value="cancel" formmethod="dialog">Cancel</button>
+            <button id="confirmBtn" value="default">Confirm</button>
+          </div>
+        </form>
+      </dialog>
+      
+      <p>
+        <button id="showDialog">Add a book</button>
+      </p>
+      <output></output> 
+
 </body>
 </html>
