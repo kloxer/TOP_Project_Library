@@ -1,120 +1,138 @@
-const myLibrary = []; //Will contain Book Objects
-
-function Book(title,author,numPages,read) {
-  // the constructor...
-  this.title = title;
-  this.author = author;
-  this.numPages = numPages;
-  this.read = read;
-
-}
-
-function addBookToLibrary(title,author,numPages,read) {
-  // do stuff here
-  //THIS should call Book() to create a book object then push to the array
-    newBook  = new Book(title,author,numPages,read);
-    myLibrary.push(newBook);
-    return newBook;
-}
-
-
-function getBook(title) {
-  for (let i = 0; i < myLibrary.length; i++) {
-    if (myLibrary[i].title === title) {
-      console.log("found book");
-      return myLibrary[i];
-    }
-  }
-  // If no match is found, optionally return something (like null or undefined)
-  return null;
-}
-
-
-addBookToLibrary("The Fault in Our Stars", "John Green", 313, true);
-addBookToLibrary("Game of Thrones", "George R.R. Martin", 694, false);
-addBookToLibrary("Atomic Habits", "James Clear", 306, true);
-addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 310, true);
-addBookToLibrary("Pride and Prejudice", "Jane Austen", 432, false);
-
-
 const books = document.querySelector("#books");
 
-//Function to add a card to the grid
-function addCardToGrid(title,author,numPages, index,  read) {
-  const div = document.createElement("div");
-    div.setAttribute("class", "card");
-    div.setAttribute("id", index);
-    const cardTitle = document.createElement("h1");
-    cardTitle.setAttribute("class", "cardTitle");
-    cardTitle.textContent = title ;
-    const cardAuthor = document.createElement("h4");
-    cardAuthor.textContent = author;
-    const cardPages = document.createElement("p");
-    cardPages.textContent =  numPages + " pages";
+class Book{
+  title;
+  author;
+  numPages;
+  read;
 
-    const readBook = document.createElement("p");
-    readBook.textContent = "Read Book: "  + read;
-
-    const changeBookStatus = document.createElement("button");
-    changeBookStatus.setAttribute("class", "changeFromRead");
-
-    if (read == true){
-      changeBookStatus.textContent = "Read";
-    }
-    else{
-      changeBookStatus.textContent = "Not Read";
-
-    }
-
-    changeBookStatus.addEventListener("click", (e) =>{
-      console.log(cardTitle.textContent);
-      console.log('1');
-      book = getBook(cardTitle.textContent);
-      console.log(book.title);
-      if (Book.read == true){
-        changeBookStatus.textContent = "Not read";
-        Book.read = false;
-
-      }
-      else{
-        changeBookStatus.textContent = "Read";
-        Book.read = true;
+  constructor(title,author,numPages,read){
+    this.title = title;
+    this.author = author;
+    this.numPages = numPages;
+    this.read = read;
+  }
   
-      }
-
-    });
-
-
-
-
-    const eraseButton = document.createElement("button");
-    eraseButton.setAttribute("id","eraseCard");
-    eraseButton.textContent="Remove";
-
-    eraseButton.addEventListener("click", (e) =>{
-      const getCard = document.getElementById(index);
-      books.removeChild(getCard);
-    });
-
-    div.appendChild(cardTitle);
-    div.appendChild(cardAuthor)
-
-    div.appendChild(cardPages);
-
-    div.appendChild(readBook);
-    div.appendChild(changeBookStatus);
-
-    div.appendChild(eraseButton);
-
-    books.append(div);
-
 }
 
-//Add the default books to library
-myLibrary.forEach(element => {
-  addCardToGrid(element.title, element.author, element.numPages, myLibrary.indexOf(element), element.read);
-});
+class library{
+  myLibrary = []; //Will contain Book Objects
 
+  addBookObject(book){
+    this.myLibrary.push(book);
+    return book;
+  }
+
+  addBookToLibrary(title,author,numPages,read) {
+    // do stuff here
+    //THIS should call Book() to create a book object then push to the array
+    const newBook = new Book(title,author,numPages,read)
+    this.myLibrary.push(newBook);
+    return newBook;
+  }
+
+  getBook(title) {
+    for (let i = 0; i < this.myLibrary.length; i++) {
+      if (this.myLibrary[i].title === title) {
+          return this.myLibrary[i];
+      }
+    }
+    return null;    // If no match is found, optionally return something (like null or undefined)
+  }
+
+  addCardToGrid(title,author,numPages, index,  read) {
+    const div = document.createElement("div");
+      div.setAttribute("class", "card");
+      div.setAttribute("id", index);
+      const cardTitle = document.createElement("h1");
+      cardTitle.setAttribute("class", "cardTitle");
+      cardTitle.textContent = title ;
+      const cardAuthor = document.createElement("h4");
+      cardAuthor.textContent = author;
+      const cardPages = document.createElement("p");
+      cardPages.textContent =  numPages + " pages";
+  
+      const readBook = document.createElement("p");
+      readBook.textContent = "Read Book: "  + read;
+  
+      const changeBookStatus = document.createElement("button");
+      changeBookStatus.setAttribute("class", "changeFromRead");
+  
+      if (read == true){
+        changeBookStatus.textContent = "Read";
+      }
+      else{
+        changeBookStatus.textContent = "Not Read";
+  
+      }
+  
+      changeBookStatus.addEventListener("click", (e) =>{
+        console.log(cardTitle.textContent);
+        console.log('1');
+        const Book = librar.getBook(cardTitle.textContent);
+        console.log(Book.title);
+        if (Book.read == true){
+          changeBookStatus.textContent = "Not read";
+          Book.read = false;
+  
+        }
+        else{
+          changeBookStatus.textContent = "Read";
+          Book.read = true;
+    
+        }
+  
+      });
+  
+      const eraseButton = document.createElement("button");
+      eraseButton.setAttribute("id","eraseCard");
+      eraseButton.textContent="Remove";
+  
+      eraseButton.addEventListener("click", (e) =>{
+        const getCard = document.getElementById(index);
+        books.removeChild(getCard);
+      });
+  
+      div.appendChild(cardTitle);
+      div.appendChild(cardAuthor)
+  
+      div.appendChild(cardPages);
+  
+      div.appendChild(readBook);
+      div.appendChild(changeBookStatus);
+  
+      div.appendChild(eraseButton);
+  
+      books.append(div);
+  
+  }
+  
+//Add the default books to library grid
+  addAllBooks(){
+    console.log("here");
+    this.myLibrary.forEach(element => {
+      this.addCardToGrid(element.title, element.author, element.numPages, this.myLibrary.indexOf(element), element.read);
+    });
+  }
+
+  getIndex(book){
+    return this.myLibrary.indexOf(book);
+  }
+}
+
+
+
+librar = new library();
+
+
+librar.addBookToLibrary("The Fault in Our Stars", "John Green", 313, true);
+librar.addBookToLibrary("Game of Thrones", "George R.R. Martin", 694, false);
+librar.addBookToLibrary("Atomic Habits", "James Clear", 306, true);
+librar.addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 310, true);
+librar.addBookToLibrary("Pride and Prejudice", "Jane Austen", 432, false);
+
+
+librar.addAllBooks(); //Add all books in one go
 
 //Modal pop up below
 
@@ -149,8 +167,8 @@ confirmBtn.addEventListener("click", (event) => {
   if (getRead.value == "no"){
     truth = false;
   }
-
-  book = addBookToLibrary(getTitle.value,getAuthor.value,getNumPages.value)
-  addCardToGrid(getTitle.value,getAuthor.value,getNumPages.value, myLibrary.indexOf(book), truth);
+  book = new Book(getTitle.value,getAuthor.value,getNumPages.value, truth)
+  librar.addBookObject(book);
+  librar.addCardToGrid(getTitle.value,getAuthor.value,getNumPages.value, librar.getIndex(book), truth);
   favDialog.close(getTitle.value); // Have to send the select box value here.
 });
